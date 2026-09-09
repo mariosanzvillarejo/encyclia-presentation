@@ -4,8 +4,7 @@
 
 Encyclia es el espacio donde guardas, organizas y —cuando tú decidas— compartes lo que aprendes. Nada se publica sin tu permiso. Nada se pierde entre notas sueltas y pestañas abiertas.
 
-**[→ Entrar a mi enciclopedia]([https://encyclia.onrender.com/login](https://mariosanzvillarejo.github.io/encyclia-presentation/)**
-
+**[→ Entrar a mi enciclopedia](https://mariosanzvillarejo.github.io/encyclia-presentation/)**
 ---
 
 ## La mayoría de apps de notas están pensadas para *anotar*.
