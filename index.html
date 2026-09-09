@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Encyclia — Tu enciclopedia personal, privada por diseño</title>
+<style>
+/* =========================================================
+   ENCYCLIA — PRESENTACIÓN
+   Misma identidad editorial que /login: papel, tinta, acento burdeos.
+   ========================================================= */
+
+:root {
+    --paper: #f4f1e9;
+    --card: #faf9f5;
+    --ink: #191919;
+    --ink-soft: #69665f;
+    --line: #d8d4ca;
+    --accent: #8d2929;
+    --accent-dark: #6f1f1f;
+    --white: #ffffff;
+
+    --font-display: Georgia, "Times New Roman", serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+}
+
+a { color: inherit; }
+
+.wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* =========================================================
+   NAV
+   ========================================================= */
+
+.nav {
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
+}
+
+.nav-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    color: var(--ink);
+}
+
+.btn {
+    display: inline-block;
+    border: 0;
+    border-radius: 2px;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 160ms ease, transform 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.btn-primary {
+    padding: 0 22px;
+    height: 42px;
+    line-height: 42px;
+    background: var(--ink);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: var(--accent);
+    transform: translateY(-1px);
+}
+
+.btn-outline {
+    padding: 0 20px;
+    height: 40px;
+    line-height: 38px;
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--line);
+}
+
+.btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+    padding: 96px 0 80px;
+    border-bottom: 1px solid var(--line);
+}
+
+.hero-kicker {
+    color: var(--ink-soft);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 3.4rem;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    max-width: 11ch;
+}
+
+.hero p.lede {
+    margin: 28px 0 0;
+    max-width: 46ch;
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+}
+
+.hero-actions {
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.hero-actions .btn-primary {
+    height: 48px;
+    line-height: 48px;
+    padding: 0 28px;
+    font-size: 0.75rem;
+}
+
+.hero-note {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+}
+
+/* =========================================================
+   SECTION SCAFFOLDING
+   ========================================================= */
+
+section {
+    padding: 72px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+section:last-of-type {
+    border-bottom: none;
+}
+
+.section-head {
+    margin-bottom: 44px;
+    max-width: 56ch;
+}
+
+.section-head .label {
+    color: var(--accent);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.section-head h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 2.1rem;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+}
+
+.section-head p {
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    margin: 0;
+}
+
+/* =========================================================
+   PREMISE
+   ========================================================= */
+
+.premise p {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1.5;
+    max-width: 34ch;
+    margin: 0;
+}
+
+.premise p em {
+    font-style: italic;
+    color: var(--accent-dark);
+}
+
+/* =========================================================
+   FEATURES — filas divididas, no tarjetas idénticas
+   ========================================================= */
+
+.feature-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+}
+
+.feature-row:last-child {
+    border-bottom: 1px solid var(--line);
+}
+
+.feature-row h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+}
+
+.feature-row p {
+    margin: 0;
+    color: var(--ink-soft);
+    max-width: 52ch;
+}
+
+/* =========================================================
+   HOW IT WORKS — es realmente secuencial: sí lleva numeración
+   ========================================================= */
+
+.steps {
+    display: grid;
+    gap: 0;
+}
+
+.step {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 24px;
+    padding: 26px 0;
+    border-top: 1px solid var(--line);
+}
+
+.step:last-child {
+    border-bottom: 1px solid var(--line);
+}
+
+.step-num {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    color: var(--accent);
+    line-height: 1;
+}
+
+.step h3 {
+    margin: 0 0 6px;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+
+.step p {
+    margin: 0;
+    color: var(--ink-soft);
+    max-width: 54ch;
+}
+
+/* =========================================================
+   PULL QUOTE
+   ========================================================= */
+
+.pull {
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.055);
+    padding: 52px;
+    position: relative;
+}
+
+.pull::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 46px;
+    height: 3px;
+    background: var(--accent);
+}
+
+.pull blockquote {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    max-width: 34ch;
+}
+
+.pull cite {
+    display: block;
+    margin-top: 20px;
+    font-style: normal;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+}
+
+/* =========================================================
+   FAQ
+   ========================================================= */
+
+.faq-item {
+    padding: 24px 0;
+    border-top: 1px solid var(--line);
+}
+
+.faq-item:last-child {
+    border-bottom: 1px solid var(--line);
+}
+
+.faq-item h3 {
+    margin: 0 0 8px;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.faq-item p {
+    margin: 0;
+    color: var(--ink-soft);
+    max-width: 60ch;
+}
+
+/* =========================================================
+   FINAL CTA
+   ========================================================= */
+
+.final {
+    text-align: center;
+    padding: 88px 0 96px;
+}
+
+.final h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 2.3rem;
+    letter-spacing: -0.02em;
+    margin: 0 auto 16px;
+    max-width: 20ch;
+}
+
+.final p {
+    color: var(--ink-soft);
+    max-width: 44ch;
+    margin: 0 auto 32px;
+}
+
+.final .btn-primary {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 34px;
+    font-size: 0.78rem;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+    border-top: 1px solid var(--line);
+    padding: 32px 0;
+}
+
+.footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.footer-brand {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    letter-spacing: -0.02em;
+}
+
+.footer-meta {
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+.btn:focus-visible, a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+    .hero { padding: 64px 0 56px; }
+    .hero h1 { font-size: 2.4rem; max-width: 100%; }
+    .hero p.lede { max-width: 100%; }
+    .section-head h2 { font-size: 1.7rem; }
+    .feature-row, .step { grid-template-columns: 1fr; gap: 8px; }
+    .pull { padding: 32px 24px; }
+    .pull blockquote { font-size: 1.35rem; max-width: 100%; }
+    .final h2 { font-size: 1.8rem; max-width: 100%; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV — primer enlace de acceso -->
+<nav class="nav">
+    <div class="nav-inner">
+        <a href="https://encyclia.onrender.com/login" class="nav-logo">Encyclia</a>
+        <a href="https://encyclia.onrender.com/login" class="btn btn-primary">Iniciar sesión</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+    <div class="wrap">
+        <div class="hero-kicker">Enciclopedia personal y privada</div>
+        <h1>El conocimiento que reúnes merece un hogar propio.</h1>
+        <p class="lede">
+            Encyclia es el espacio donde guardas, organizas y —cuando tú decidas— compartes
+            lo que aprendes. Nada se publica sin tu permiso. Nada se pierde entre notas sueltas
+            y pestañas abiertas.
+        </p>
+        <div class="hero-actions">
+            <a href="https://encyclia.onrender.com/login" class="btn btn-primary">Entrar a mi enciclopedia</a>
+            <span class="hero-note">Gratis para empezar a escribir hoy mismo.</span>
+        </div>
+    </div>
+</header>
+
+<!-- PREMISA -->
+<section class="premise">
+    <div class="wrap">
+        <p>
+            La mayoría de apps de notas están pensadas para <em>anotar</em>.
+            Encyclia está pensada para <em>construir conocimiento</em> que dura.
+        </p>
+    </div>
+</section>
+
+<!-- CARACTERÍSTICAS -->
+<section>
+    <div class="wrap">
+        <div class="section-head">
+            <div class="label">Lo esencial</div>
+            <h2>Una enciclopedia con tus reglas</h2>
+            <p>Cuatro decisiones que tomamos para que organizar tu conocimiento no se sienta como otra tarea pendiente.</p>
+        </div>
+
+        <div class="feature-row">
+            <h3>Privado por defecto</h3>
+            <p>
+                Cada publicación nace privada. Solo tú la ves hasta que decides, artículo por artículo,
+                hacerla pública. No hay ajustes ocultos ni sorpresas de privacidad.
+            </p>
+        </div>
+
+        <div class="feature-row">
+            <h3>Categorías reales</h3>
+            <p>
+                Organiza tus publicaciones por tema desde el primer día. Tu enciclopedia crece
+                de forma ordenada, no como una lista infinita de notas sin estructura.
+            </p>
+        </div>
+
+        <div class="feature-row">
+            <h3>Publica cuando quieras</h3>
+            <p>
+                Un artículo puede pasar de privado a público con un clic, y volver a ser privado
+                igual de fácil. Tú controlas qué parte de tu conocimiento sale de tu escritorio.
+            </p>
+        </div>
+
+        <div class="feature-row">
+            <h3>Conversación real</h3>
+            <p>
+                Las publicaciones públicas reciben comentarios y valoraciones de otros usuarios de
+                Encyclia, así que también puedes contrastar lo que sabes con lo que piensan otros.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section>
+    <div class="wrap">
+        <div class="section-head">
+            <div class="label">En la práctica</div>
+            <h2>De la idea a tu enciclopedia en tres pasos</h2>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div>
+                    <h3>Crea tu cuenta</h3>
+                    <p>Un registro sencillo y tu espacio personal queda listo, vacío y solo tuyo.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div>
+                    <h3>Escribe tu primera publicación</h3>
+                    <p>Título, categoría, descripción y contenido. Se guarda como privada, sin que nadie más la vea.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div>
+                    <h3>Decide qué compartir</h3>
+                    <p>Cuando un artículo esté listo para el mundo, cámbialo a público desde el propio artículo. El resto sigue siendo solo tuyo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CITA EDITORIAL -->
+<section>
+    <div class="wrap">
+        <div class="pull">
+            <blockquote>
+                Guardar lo que sabes no debería significar entregarlo. Encyclia separa
+                lo privado de lo público, y deja la decisión donde debe estar: en ti.
+            </blockquote>
+            <cite>Filosofía de Encyclia</cite>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section>
+    <div class="wrap">
+        <div class="section-head">
+            <div class="label">Preguntas frecuentes</div>
+            <h2>Antes de empezar</h2>
+        </div>
+
+        <div class="faq-item">
+            <h3>¿Alguien puede ver mis publicaciones privadas?</h3>
+            <p>No. Las publicaciones privadas solo son visibles para ti, aunque tengas la sesión iniciada desde otro dispositivo.</p>
+        </div>
+        <div class="faq-item">
+            <h3>¿Puedo cambiar de opinión después de publicar algo?</h3>
+            <p>Sí. La visibilidad de cada publicación se puede cambiar de pública a privada, y de privada a pública, en cualquier momento.</p>
+        </div>
+        <div class="faq-item">
+            <h3>¿Qué pasa con los comentarios en mis publicaciones públicas?</h3>
+            <p>Otros usuarios pueden comentar y valorar tus publicaciones públicas con "me gusta" o "no me gusta". Tú decides si respondes.</p>
+        </div>
+        <div class="faq-item">
+            <h3>¿Necesito tarjeta para registrarme?</h3>
+            <p>No. Crear tu cuenta y empezar a escribir en Encyclia no requiere ningún dato de pago.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final">
+    <div class="wrap">
+        <h2>Tu conocimiento, en un solo lugar.</h2>
+        <p>Empieza tu enciclopedia personal hoy. Tarda menos de un minuto.</p>
+        <a href="https://encyclia.onrender.com/login" class="btn btn-primary">Iniciar sesión en Encyclia</a>
+    </div>
+</section>
+
+<!-- FOOTER — segundo enlace de acceso -->
+<footer>
+    <div class="wrap footer-inner">
+        <div class="footer-brand">Encyclia</div>
+        <div class="footer-meta">Tu enciclopedia personal privada</div>
+        <a href="https://encyclia.onrender.com/login" class="btn btn-outline">Acceder</a>
+    </div>
+</footer>
+
+</body>
+</html>
